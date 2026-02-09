@@ -1,0 +1,17 @@
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
+
+# WordPress sensitive config
+wp-config.php
+
+# Media uploads (usually environment-specific)
+wp-content/uploads/
+
+# Cache / temp (common)
+wp-content/cache/
+wp-content/upgrade/
+wp-content/backups/
+error_log
+*.log
