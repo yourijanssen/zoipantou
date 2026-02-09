@@ -25,25 +25,6 @@ if ( have_posts() ) {
 	the_post();
 }
 
-$front_tabs = array(
-	array(
-		'id'    => 'sxetika',
-		'label' => __( 'Σχετικά', 'zoipantou' ),
-	),
-	array(
-		'id'    => 'ypiresies',
-		'label' => __( 'Υπηρεσίες', 'zoipantou' ),
-	),
-	array(
-		'id'    => 'syxnes-erotiseis',
-		'label' => __( 'Συχνές ερωτήσεις', 'zoipantou' ),
-	),
-	array(
-		'id'    => 'epikoinonia',
-		'label' => __( 'Επικοινωνία', 'zoipantou' ),
-	),
-);
-
 get_header();
 ?>
 <main class="site-main container">
@@ -67,12 +48,6 @@ get_header();
 			<?php endif; ?>
 		</div>
 	</section>
-
-	<nav class="section-tabs" aria-label="<?php esc_attr_e( 'Βασικές ενότητες ιστοσελίδας ψυχολόγου', 'zoipantou' ); ?>">
-		<?php foreach ( $front_tabs as $tab ) : ?>
-			<a class="section-tab" href="#<?php echo esc_attr( $tab['id'] ); ?>"><?php echo esc_html( $tab['label'] ); ?></a>
-		<?php endforeach; ?>
-	</nav>
 
 	<section class="home-search content-card">
 		<h2><?php esc_html_e( 'Αναζήτηση περιεχομένου', 'zoipantou' ); ?></h2>

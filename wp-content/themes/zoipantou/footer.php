@@ -8,15 +8,18 @@ $brand_name  = zoipantou_get_brand_name();
 ?>
 <footer class="site-footer">
 	<div class="container footer-inner">
-		<p class="footer-copy">
-			<?php
-			if ( '' !== $footer_text ) {
-				echo esc_html( $footer_text );
-			} else {
-				echo esc_html( gmdate( 'Y' ) . ' ' . $brand_name );
-			}
-			?>
-		</p>
+		<div class="footer-meta">
+			<p class="footer-copy">
+				<?php
+				if ( '' !== $footer_text ) {
+					echo esc_html( $footer_text );
+				} else {
+					echo esc_html( gmdate( 'Y' ) . ' ' . $brand_name );
+				}
+				?>
+			</p>
+			<p class="footer-credit"><?php esc_html_e( 'Made by Youri Janssen', 'zoipantou' ); ?></p>
+		</div>
 		<nav class="footer-nav" aria-label="<?php esc_attr_e( 'Μενού υποσέλιδου', 'zoipantou' ); ?>">
 			<?php
 			wp_nav_menu(
