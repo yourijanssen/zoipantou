@@ -4,6 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 $footer_text = trim( (string) get_theme_mod( 'zoipantou_footer_text', '' ) );
+$brand_name  = zoipantou_get_brand_name();
 ?>
 <footer class="site-footer">
 	<div class="container footer-inner">
@@ -12,7 +13,7 @@ $footer_text = trim( (string) get_theme_mod( 'zoipantou_footer_text', '' ) );
 			if ( '' !== $footer_text ) {
 				echo esc_html( $footer_text );
 			} else {
-				echo esc_html( gmdate( 'Y' ) . ' ' . get_bloginfo( 'name' ) );
+				echo esc_html( gmdate( 'Y' ) . ' ' . $brand_name );
 			}
 			?>
 		</p>

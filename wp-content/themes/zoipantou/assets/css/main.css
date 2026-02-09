@@ -125,6 +125,82 @@ a:focus {
   flex: 1;
 }
 
+.header-panel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.header-tools {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.menu-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--text);
+  width: 2.75rem;
+  height: 2.75rem;
+  cursor: pointer;
+  padding: 0;
+}
+
+.menu-toggle-box {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.35rem;
+  height: 1rem;
+  position: relative;
+}
+
+.menu-toggle-line,
+.menu-toggle-line::before,
+.menu-toggle-line::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  border-radius: 2px;
+  background: currentColor;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.menu-toggle-line {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.menu-toggle-line::before {
+  top: -0.4rem;
+}
+
+.menu-toggle-line::after {
+  top: 0.4rem;
+}
+
+.site-header.is-menu-open .menu-toggle-line {
+  background: transparent;
+}
+
+.site-header.is-menu-open .menu-toggle-line::before {
+  transform: translateY(0.4rem) rotate(45deg);
+}
+
+.site-header.is-menu-open .menu-toggle-line::after {
+  transform: translateY(-0.4rem) rotate(-45deg);
+}
+
 .menu {
   display: flex;
   align-items: center;
@@ -171,6 +247,39 @@ a:focus {
   display: flex;
   align-items: center;
   gap: 0.55rem;
+}
+
+.language-switcher {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  padding: 0.2rem;
+}
+
+.language-option {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.3rem;
+  border-radius: 999px;
+  padding: 0.3rem 0.55rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+}
+
+.language-option:hover,
+.language-option:focus {
+  color: var(--accent);
+}
+
+.language-option.is-active {
+  background: var(--accent);
+  color: #fff;
 }
 
 .search-form label {
@@ -321,7 +430,8 @@ a:focus {
 .faq-section,
 .contact-band,
 .latest-posts,
-.front-page-content {
+.front-page-content,
+.home-search {
   margin-bottom: 3rem;
 }
 
@@ -378,6 +488,24 @@ a:focus {
   border-color: var(--accent);
   background: var(--accent-soft);
   color: var(--accent-hover);
+}
+
+.home-search h2 {
+  margin-bottom: 0.4rem;
+}
+
+.home-search p {
+  margin-top: 0;
+  margin-bottom: 0.9rem;
+  color: var(--muted);
+}
+
+.home-search .search-form {
+  max-width: 620px;
+}
+
+.home-search .search-field {
+  width: min(100%, 460px);
 }
 
 .services-grid {
@@ -635,15 +763,47 @@ a:focus {
   }
 }
 
-@media (max-width: 880px) {
+@media (max-width: 992px) {
   .header-inner,
   .footer-inner {
+    align-items: flex-start;
+  }
+
+  .header-inner {
+    flex-wrap: wrap;
+    row-gap: 0.8rem;
+  }
+
+  .js-enabled .menu-toggle {
+    display: inline-flex;
+    margin-left: auto;
+  }
+
+  .header-panel {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.9rem;
+    margin-top: 0.15rem;
+    padding-top: 0.9rem;
+    border-top: 1px solid var(--line);
+  }
+
+  .js-enabled .header-panel {
+    display: none;
+  }
+
+  .js-enabled .site-header.is-menu-open .header-panel {
+    display: flex;
+  }
+
+  .header-tools {
+    width: 100%;
     flex-direction: column;
     align-items: flex-start;
   }
 
   .site-nav,
-  .header-search,
   .search-form,
   .search-form label,
   .search-field {
@@ -651,7 +811,19 @@ a:focus {
   }
 
   .menu {
-    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.2rem;
+  }
+
+  .menu-item a,
+  .menu .page_item a {
+    display: block;
+    padding: 0.55rem 0.1rem;
+  }
+
+  .language-switcher {
+    align-self: flex-start;
   }
 
   .content-layout {
@@ -659,7 +831,7 @@ a:focus {
   }
 }
 
-@media (max-width: 680px) {
+@media (max-width: 575px) {
   .container {
     width: min(var(--container), calc(100% - 1.3rem));
   }
@@ -697,5 +869,19 @@ a:focus {
 
   .footer-menu {
     justify-content: flex-start;
+  }
+
+  .menu-toggle {
+    width: 2.55rem;
+    height: 2.55rem;
+  }
+
+  .search-form {
+    gap: 0.4rem;
+  }
+
+  .search-submit {
+    width: auto;
+    padding-inline: 0.75rem;
   }
 }

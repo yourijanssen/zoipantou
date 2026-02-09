@@ -19,10 +19,7 @@ if ( '' === $hero_button_url ) {
 	$hero_button_url = '#epikoinonia';
 }
 
-$show_home_posts = (bool) get_theme_mod( 'zoipantou_show_home_posts', 1 );
-$posts_title     = trim( (string) get_theme_mod( 'zoipantou_home_posts_title', __( 'Άρθρα και πόροι αυτοφροντίδας', 'zoipantou' ) ) );
-$posts_count     = zoipantou_sanitize_posts_count( get_theme_mod( 'zoipantou_home_posts_count', 3 ) );
-$contact_email   = sanitize_email( get_option( 'admin_email' ) );
+$contact_email = sanitize_email( get_option( 'admin_email' ) );
 
 if ( have_posts() ) {
 	the_post();
@@ -46,20 +43,6 @@ $front_tabs = array(
 		'label' => __( 'Επικοινωνία', 'zoipantou' ),
 	),
 );
-
-if ( $show_home_posts ) {
-	array_splice(
-		$front_tabs,
-		3,
-		0,
-		array(
-			array(
-				'id'    => 'arthra',
-				'label' => __( 'Άρθρα', 'zoipantou' ),
-			),
-		)
-	);
-}
 
 get_header();
 ?>
@@ -90,6 +73,12 @@ get_header();
 			<a class="section-tab" href="#<?php echo esc_attr( $tab['id'] ); ?>"><?php echo esc_html( $tab['label'] ); ?></a>
 		<?php endforeach; ?>
 	</nav>
+
+	<section class="home-search content-card">
+		<h2><?php esc_html_e( 'Αναζήτηση περιεχομένου', 'zoipantou' ); ?></h2>
+		<p><?php esc_html_e( 'Βρείτε άρθρα και πληροφορίες με λέξεις-κλειδιά.', 'zoipantou' ); ?></p>
+		<?php get_search_form(); ?>
+	</section>
 
 	<section class="approach" id="sxetika">
 		<div class="approach-media">
@@ -149,33 +138,6 @@ get_header();
 			</details>
 		</div>
 	</section>
-
-	<?php if ( $show_home_posts ) : ?>
-		<section class="latest-posts" id="arthra">
-			<header class="section-heading">
-				<h2><?php echo esc_html( $posts_title ); ?></h2>
-				<p><?php esc_html_e( 'Σκέψεις και πρακτικές συμβουλές για ψυχική υγεία και καθημερινή ισορροπία.', 'zoipantou' ); ?></p>
-			</header>
-			<?php
-			$query = new WP_Query(
-				array(
-					'posts_per_page' => $posts_count,
-				)
-			);
-			if ( $query->have_posts() ) :
-				while ( $query->have_posts() ) :
-					$query->the_post();
-					get_template_part( 'template-parts/content', get_post_type() );
-				endwhile;
-				wp_reset_postdata();
-			else :
-				?>
-				<p><?php esc_html_e( 'Δεν υπάρχουν ακόμη άρθρα.', 'zoipantou' ); ?></p>
-				<?php
-			endif;
-			?>
-		</section>
-	<?php endif; ?>
 
 	<section class="contact-band" id="epikoinonia">
 		<h2><?php esc_html_e( 'Επικοινωνία και ραντεβού', 'zoipantou' ); ?></h2>
